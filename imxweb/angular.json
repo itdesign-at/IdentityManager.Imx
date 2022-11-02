@@ -1635,10 +1635,10 @@
         }
       }
     },
-    "custom-app": {
+    "ccc-app-portal": {
       "projectType": "application",
-      "root": "projects/custom-app",
-      "sourceRoot": "projects/custom-app/src",
+      "root": "projects/ccc-app-portal",
+      "sourceRoot": "projects/ccc-app-portal/src",
       "prefix": "imx",
       "schematics": {
         "@schematics/angular:component": {
@@ -1649,15 +1649,15 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/custom-app",
-            "index": "projects/custom-app/src/index.html",
-            "main": "projects/custom-app/src/main.ts",
-            "polyfills": "projects/custom-app/src/polyfills.ts",
-            "tsConfig": "projects/custom-app/tsconfig.app.json",
+            "outputPath": "dist/ccc-app-portal",
+            "index": "projects/ccc-app-portal/src/index.html",
+            "main": "projects/ccc-app-portal/src/main.ts",
+            "polyfills": "projects/ccc-app-portal/src/polyfills.ts",
+            "tsConfig": "projects/ccc-app-portal/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "projects/custom-app/src/appconfig.json",
-              "projects/custom-app/src/assets",
+              "projects/ccc-app-portal/src/appconfig.json",
+              "projects/ccc-app-portal/src/assets",
               {
                 "glob": "**/*",
                 "input": "./html",
@@ -1680,7 +1680,7 @@
               }
             ],
             "styles": [
-              "projects/custom-app/src/styles.scss",
+              "projects/ccc-app-portal/src/styles.scss",
               "projects/qbm/src/lib/styles/imx-page-title.scss",
               "shared/assets/styles.scss",
               "shared/assets/variables.scss"
@@ -1703,8 +1703,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "projects/custom-app/src/environments/environment.ts",
-                  "with": "projects/custom-app/src/environments/environment.prod.ts"
+                  "replace": "projects/ccc-app-portal/src/environments/environment.ts",
+                  "with": "projects/ccc-app-portal/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -1735,42 +1735,42 @@
               "namedChunks": true
             },
             "es5": {
-              "tsConfig": "./projects/custom-app/tsconfig-es5.app.json"
+              "tsConfig": "./projects/ccc-app-portal/tsconfig-es5.app.json"
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "custom-app:build"
+            "browserTarget": "ccc-app-portal:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "custom-app:build:production"
+              "browserTarget": "ccc-app-portal:build:production"
             },
             "development": {
-              "browserTarget": "custom-app:build:development"
+              "browserTarget": "ccc-app-portal:build:development"
             },
             "es5": {
-              "browserTarget": "custom-app:build:es5"
+              "browserTarget": "ccc-app-portal:build:es5"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "custom-app:build"
+            "browserTarget": "ccc-app-portal:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/custom-app/src/test.ts",
-            "polyfills": "projects/custom-app/src/polyfills.ts",
-            "tsConfig": "projects/custom-app/tsconfig.spec.json",
-            "karmaConfig": "projects/custom-app/karma.conf.js",
-            "assets": ["projects/custom-app/src/appconfig.json", "projects/custom-app/src/assets"],
-            "styles": ["projects/custom-app/src/styles.scss"],
+            "main": "projects/ccc-app-portal/src/test.ts",
+            "polyfills": "projects/ccc-app-portal/src/polyfills.ts",
+            "tsConfig": "projects/ccc-app-portal/tsconfig.spec.json",
+            "karmaConfig": "projects/ccc-app-portal/karma.conf.js",
+            "assets": ["projects/ccc-app-portal/src/appconfig.json", "projects/ccc-app-portal/src/assets"],
+            "styles": ["projects/ccc-app-portal/src/styles.scss"],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "./shared/assets",
@@ -1785,7 +1785,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["projects/custom-app/tsconfig.app.json", "projects/custom-app/tsconfig.spec.json"],
+            "tsConfig": ["projects/ccc-app-portal/tsconfig.app.json", "projects/ccc-app-portal/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**"]
           }
         }
@@ -1821,9 +1821,40 @@
           }
         }
       }
+    },
+    "ccc-itd-lib": {
+      "projectType": "library",
+      "root": "projects/ccc-itd-lib",
+      "sourceRoot": "projects/ccc-itd-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ccc-itd-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ccc-itd-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ccc-itd-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ccc-itd-lib/src/test.ts",
+            "tsConfig": "projects/ccc-itd-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/ccc-itd-lib/karma.conf.js"
+          }
+        }
+      }
     }
   },
-  "defaultProject": "qer-app-portal",
+  "defaultProject": "ccc-app-portal",
   "cli": {
     "analytics": "406eb5c5-3afb-4dab-b878-0cb0ade8d2aa"
   }
