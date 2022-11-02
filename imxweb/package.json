@@ -3,6 +3,7 @@
   "version": "9.0.0",
   "scripts": {
     "ng": "ng",
+    "start:apiserver": "run-api-server.cmd",
     "start": "ng serve --configuration development",
     "build": "ng build",
     "build:qbm": "ng build qbm",
