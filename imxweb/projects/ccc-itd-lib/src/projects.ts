@@ -5,3 +5,4 @@
 export * from './lib/ccc-itd-lib.service';
 export * from './lib/ccc-itd-lib.component';
 export * from './lib/ccc-itd-lib.module';
+export {ItdMenuService} from './lib/menu/menu.service';

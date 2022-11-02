@@ -48,7 +48,7 @@ import {
   QbmModule,
   AuthenticationModule,
   ObjectHistoryApiService,
-  ObjectHistoryModule
+  ObjectHistoryModule, MenuService
 } from 'qbm';
 import {
   AddressbookModule,
@@ -77,11 +77,14 @@ import { environment } from '../environments/environment';
 import appConfigJson from '../appconfig.json';
 import { PortalHistoryService } from './portal-history.service';
 
+import { CccItdLibModule, ItdMenuService } from "ccc-itd-lib";
+
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    CccItdLibModule,
     AppRoutingModule,
     AuthenticationModule,
     BrowserAnimationsModule,
@@ -150,7 +153,11 @@ import { PortalHistoryService } from './portal-history.service';
         LdsReplacePipe
       ]
     },
-    CdrRegistryService
+    CdrRegistryService,
+    {
+      provide: MenuService,
+      useClass: ItdMenuService
+    }
   ],
   bootstrap: [AppComponent]
 })

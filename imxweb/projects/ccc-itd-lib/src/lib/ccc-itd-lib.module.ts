@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CccItdLibComponent } from './ccc-itd-lib.component';
-
+import {MenuService} from "qbm";
+import {ItdMenuService} from "./menu/menu.service";
 
 
 @NgModule({
@@ -11,6 +12,12 @@ import { CccItdLibComponent } from './ccc-itd-lib.component';
   ],
   exports: [
     CccItdLibComponent
+  ],
+  providers: [
+    {
+      provide: MenuService,
+      useClass: ItdMenuService
+    }
   ]
 })
 export class CccItdLibModule { }
