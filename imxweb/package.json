@@ -8,6 +8,7 @@
     "build": "ng build",
     "build:qbm": "ng build qbm",
     "build:qer": "ng build qer",
+    "build:itd": "ng build itd",
     "build:watch": "ng build --watch --configuration development",
     "build:watch:dynamic": "ng build --watch --configuration dynamic",
     "build:app": "ng build --aot --configuration production",
