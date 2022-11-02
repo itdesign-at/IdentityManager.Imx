@@ -19,7 +19,13 @@
       "qbm": ["dist/qbm"],
       "qbm/*": ["dist/qbm/*"],
       "qer": ["dist/qer"],
-      "qer/*": ["dist/qer/*"],
+      "qer/*": [
+        "dist/qer/*"
+      ],
+      "ccc-itd-lib": [
+        "dist/ccc-itd-lib/ccc-itd-lib",
+        "dist/ccc-itd-lib"
+      ],
       "aob": ["dist/aob"],
       "aob/*": [
         "dist/aob/*"
