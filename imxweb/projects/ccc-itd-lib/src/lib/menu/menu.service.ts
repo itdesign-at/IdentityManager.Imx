@@ -30,6 +30,7 @@ export class ItdMenuService extends MenuService {
     };
 
     menuItems = menuItems.filter(filterDisabledItems);
+    console.log(menuItems);
     return menuItems;
   }
 }

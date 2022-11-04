@@ -1,15 +1,16 @@
-import { NgModule } from '@angular/core';
-import { CccItdLibComponent } from './ccc-itd-lib.component';
-import {MenuService} from "qbm";
-import {ItdMenuService} from "./menu/menu.service";
+import {NgModule} from '@angular/core';
+import {CccItdLibComponent} from './ccc-itd-lib.component';
+import {MenuService} from 'qbm';
+import {ItdMenuService} from './menu/menu.service';
+import {ButtonComponent} from './button/button.component';
 
 
 @NgModule({
   declarations: [
-    CccItdLibComponent
+    CccItdLibComponent,
+    ButtonComponent
   ],
-  imports: [
-  ],
+  imports: [],
   exports: [
     CccItdLibComponent
   ],
@@ -20,4 +21,5 @@ import {ItdMenuService} from "./menu/menu.service";
     }
   ]
 })
-export class CccItdLibModule { }
+export class CccItdLibModule {
+}
