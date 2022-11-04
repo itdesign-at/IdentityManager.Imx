@@ -2,18 +2,19 @@
   <ng-container *ngIf="isLoggedIn">
     <imx-mast-head>
       <span imx-profile-menu-items>
-        <button mat-menu-item data-imx-identifier="user-menu-profile" (click)="goToProfile()">
+        <button (click)="goToProfile()" data-imx-identifier="user-menu-profile" mat-menu-item>
           <span translate>#LDS#Profile</span>
         </button>
-        <button mat-menu-item data-imx-identifier="user-menu-addressbook" (click)="goToAddressbook()">
+        <button (click)="goToAddressbook()" data-imx-identifier="user-menu-addressbook" mat-menu-item>
           <span translate>#LDS#Menu Entry Address book</span>
         </button>
       </span>
     </imx-mast-head>
     <imx-menu [hidden]="hideMenu" [menuItems]="menuItems"></imx-menu>
   </ng-container>
-  <div class="pageContent" [ngClass]="{ 'pageContent--full-page': isContentFullScreen }">
+  <div [ngClass]="{ 'pageContent--full-page': isContentFullScreen }" class="pageContent">
     <imx-usermessage *ngIf="isLoggedIn" [hidden]="hideUserMessage"></imx-usermessage>
     <router-outlet *ngIf="showPageContent"></router-outlet>
+    <imx-ext id="button-test"></imx-ext>
   </div>
 </div>

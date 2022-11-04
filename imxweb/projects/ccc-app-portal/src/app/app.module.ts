@@ -24,60 +24,61 @@
  *
  */
 
-import { HttpClientModule } from '@angular/common/http';
-import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatPaginatorIntl } from '@angular/material/paginator';
-import { MatTabsModule } from '@angular/material/tabs';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { EuiCoreModule, EuiMaterialModule } from '@elemental-ui/core';
-import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
-import { TranslateModule, TranslateLoader, MissingTranslationHandler, TranslateService } from '@ngx-translate/core';
+import {HttpClientModule} from '@angular/common/http';
+import {APP_INITIALIZER, ErrorHandler, NgModule} from '@angular/core';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatPaginatorIntl} from '@angular/material/paginator';
+import {MatTabsModule} from '@angular/material/tabs';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {EuiCoreModule, EuiMaterialModule} from '@elemental-ui/core';
+import {LoggerModule, NgxLoggerLevel} from 'ngx-logger';
+import {MissingTranslationHandler, TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
 
 import {
+  AuthenticationModule,
   CdrRegistryService,
   GlobalErrorHandler,
-  ImxTranslateLoader,
   ImxMissingTranslationHandler,
+  ImxTranslateLoader,
+  LdsReplacePipe,
   MastHeadModule,
   MenuModule,
-  LdsReplacePipe,
-  Paginator,
-  UserMessageModule,
-  QbmModule,
-  AuthenticationModule,
+  MenuService,
   ObjectHistoryApiService,
-  ObjectHistoryModule, MenuService
+  ObjectHistoryModule,
+  Paginator,
+  QbmModule,
+  UserMessageModule
 } from 'qbm';
 import {
   AddressbookModule,
   ApprovalsModule,
-  IdentitiesModule,
   DelegationModule,
+  IdentitiesModule,
+  ItshopPatternModule,
   ObjectSheetModule,
   ObjectsheetPersonModule,
   ProductSelectionModule,
+  ProfileModule,
   QerModule,
   QpmIntegrationModule,
+  RequestConfigModule,
   RequestHistoryModule,
+  RoleManangementModule,
   ServiceCategoriesModule,
   ServiceItemsEditModule,
-  ShoppingCartModule,
-  ProfileModule,
-  RequestConfigModule,
-  RoleManangementModule,
-  ItshopPatternModule
+  ShoppingCartModule
 } from 'qer';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { AppService } from './app.service';
-import { environment } from '../environments/environment';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {AppService} from './app.service';
+import {environment} from '../environments/environment';
 import appConfigJson from '../appconfig.json';
-import { PortalHistoryService } from './portal-history.service';
+import {PortalHistoryService} from './portal-history.service';
 
-import { CccItdLibModule, ItdMenuService } from "ccc-itd-lib";
+import {CccItdLibModule, CccItdLibService, ItdMenuService} from 'ccc-itd-lib';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,7 @@ import { CccItdLibModule, ItdMenuService } from "ccc-itd-lib";
     EuiMaterialModule,
     HttpClientModule,
     IdentitiesModule,
-    LoggerModule.forRoot({ level: NgxLoggerLevel.DEBUG, serverLogLevel: NgxLoggerLevel.OFF }),
+    LoggerModule.forRoot({level: NgxLoggerLevel.DEBUG, serverLogLevel: NgxLoggerLevel.OFF}),
     MatDialogModule,
     MatTabsModule,
     MastHeadModule,
@@ -129,8 +130,8 @@ import { CccItdLibModule, ItdMenuService } from "ccc-itd-lib";
     ServiceItemsEditModule
   ],
   providers: [
-    { provide: 'environment', useValue: environment },
-    { provide: 'appConfigJson', useValue: appConfigJson },
+    {provide: 'environment', useValue: environment},
+    {provide: 'appConfigJson', useValue: appConfigJson},
     {
       provide: APP_INITIALIZER,
       useFactory: AppService.init,
@@ -154,6 +155,7 @@ import { CccItdLibModule, ItdMenuService } from "ccc-itd-lib";
       ]
     },
     CdrRegistryService,
+    CccItdLibService,
     {
       provide: MenuService,
       useClass: ItdMenuService
@@ -161,4 +163,9 @@ import { CccItdLibModule, ItdMenuService } from "ccc-itd-lib";
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private readonly initializer: CccItdLibService) {
+    this.initializer.onInit();
+    console.log('INITIALIZED');
+  }
+}
