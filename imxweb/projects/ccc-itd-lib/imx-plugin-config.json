@@ -1,0 +1,8 @@
+{
+  "ccc-app-portal": [
+    {
+      "Container": "ccc-itd-lib",
+      "Name": "CccItdConfigModule"
+    }
+  ]
+}
