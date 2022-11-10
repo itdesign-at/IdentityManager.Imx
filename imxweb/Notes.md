@@ -11,6 +11,29 @@ the menu items. To find out the ID of a menu it to `console.log(menuItems)`.
 
 - [ ] Remove menu items through config.
 
+### ExtensionService
+
+With the ExtensionService you can extend your HTML through modules. Inside `qbm` there is a folder `./projects/qbm/ext`
+with an `ext.service.ts` file. This is where the `<imx-ext>` tag is
+defined.
+
+The first step is to create a service inside the module folder
+e.g. `./projects/ccc-itd-lib/src/lib/ccc-itd-lib.service.ts`. Next you have to import the `ExtService` from qbm and
+inject it in the constructor. Create a method to where you call the `register` method from ExtService.
+
+```javascript
+onInit()
+{
+  this.extService.register('YourIdentifierName', {
+    instance: YourComponentName
+  });
+}
+```
+
+Create a `config.module`. Inside the `config.module` you will call the method from
+the service. In order to use the plugin you will need to create `imx-plugin-config.ts` file. [More info how to add
+plugins](https://support.oneidentity.com/de-de/technical-documents/identity-manager/9.0%20lts/html5-development-guide/3#TOPIC-1847834)
+
 ### How to add new menu category
 
 Go to ``./imxweb/projects/ccc-itd-lib/src/lib`` folder. Generate a new module (`ng g module nameOftheModule`) and call
